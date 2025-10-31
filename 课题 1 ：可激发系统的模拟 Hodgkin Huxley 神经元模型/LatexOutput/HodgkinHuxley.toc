@@ -1,0 +1,26 @@
+\contentsline {subsection}{可激发系统}{1}{section*.2}%
+\contentsline {subsection}{神经元}{1}{section*.3}%
+\contentsline {subsection}{神经元的可激发性}{2}{section*.4}%
+\contentsline {subsection}{动作电势的特性}{3}{Item.6}%
+\contentsline {subsection}{神经元的数学建模}{4}{section*.6}%
+\contentsline {subsubsection}{细胞膜与离子通道}{4}{section*.7}%
+\contentsline {subsubsection}{等效电路}{4}{section*.8}%
+\contentsline {paragraph}{PPT上指出的公式}{4}{section*.9}%
+\contentsline {paragraph}{PPT中给出的微分方程是}{4}{section*.10}%
+\contentsline {paragraph}{PPT中给出的参数是}{5}{section*.11}%
+\contentsline {paragraph}{文献中给出的微分方程：}{5}{section*.12}%
+\contentsline {paragraph}{文献中给出的参数是}{6}{section*.13}%
+\contentsline {subsection}{Task1任务 1：研究不同刺激强度下神经元膜电势的变化}{6}{section*.14}%
+\contentsline {subsubsection}{脉冲刺激1-使用PPT中的参数和方程}{7}{section*.15}%
+\contentsline {subsubsection}{脉冲刺激2-使用PPT中的参数和方程}{10}{section*.16}%
+\contentsline {subsubsection}{直流刺激-使用PPT中的参数和方程}{12}{section*.17}%
+\contentsline {subsubsection}{脉冲刺激-使用文献中的参数和方程}{17}{section*.18}%
+\contentsline {subsubsection}{直流刺激-使用文献中的参数和方程}{19}{section*.19}%
+\contentsline {subsection}{Task2任务 2：计算直流刺激强度和神经元发放频率之间的关系}{22}{section*.20}%
+\contentsline {subsection}{Task3任务 3：计算一个动作电势过程中的通过单位面积细胞膜的钠离子总数目}{40}{section*.21}%
+\contentsline {subsection}{扩展：}{45}{section*.22}%
+\contentsline {paragraph}{Task4动作电位生成中的能量消耗速率}{46}{section*.23}%
+\contentsline {paragraph}{Task5平均能量消耗作为外部电流的函数}{51}{section*.24}%
+\contentsline {subsubsection}{Task6两个电耦合神经元的能量平衡}{57}{section*.25}%
+\contentsline {paragraph}{单向耦合的定义}{58}{section*.26}%
+\contentsline {paragraph}{单向耦合的计算结果}{59}{section*.27}%

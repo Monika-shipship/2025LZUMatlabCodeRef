@@ -1,0 +1,143 @@
+% Demofig5fig6Test.m — 并行复现"两个电耦合神经元的能量平衡"的图5/图6（单向耦合）
+% 运行前：确保同目录下有 Task5TwoHH_EnergyCoupled.m
+% 说明：并行在 k × 段 上展开；每个任务只返回时间平均量；主程序聚合求段间平均并作图
+
+clear; clc;
+
+% 基本 HH 参数
+C = 1;
+E.Na = 115; E.K = -12; E.L = 10.6;
+g.Na = 120; g.K = 36; g.L = 0.3;
+
+% 速率函数
+Alpha.n = @(u) (0.1 - 0.01 .* u) ./ (exp(1 - 0.1 .* u) - 1);
+Alpha.m = @(u) (2.5 - 0.1 .* u) ./ (exp(2.5 - 0.1 .* u) - 1);
+Alpha.h = @(u) 0.07 .* exp(-u ./ 20);
+Beta.n  = @(u) 0.125 .* exp(-u ./ 80);
+Beta.m  = @(u) 4 .* exp(-u ./ 18);
+Beta.h  = @(u) 1 ./ (exp(3 - 0.1 .* u) + 1);
+
+% 计算选项（不把 Nseg 放进 opt，避免变成名称-值参数）
+opt.fs      = 4e4;          % 40 kHz  dt=0.025 ms
+opt.T       = 10e3;         % 每段 10 s（ms）
+opt.T_warm  = 2e3;          % 丢弃前 2 s
+opt.k_list  = 0:0.01:0.20;  % 单向耦合强度扫描
+
+% 刺激/噪声
+% 若要完全按文段"均值0、方差9"的说法，可把 mu_pre=0, sigma_pre=3
+opt.mu_pre     = 5.0;       % 促使前神经元稳定放电
+opt.sigma_pre  = 1.0;
+opt.mu_post    = 0.0;
+opt.sigma_post = 1.0;
+
+opt.seed    = 20251029;
+opt.Ifdebug = 0;
+
+% 段数单独管理（不要塞进 opt）
+S = 6;
+
+% 并行池
+p = gcp('nocreate');
+if isempty(p)
+    p = parpool("Processes");
+end
+fprintf('Parallel pool with %d workers.\n', p.NumWorkers);
+
+% 任务展开为一维切片
+K  = numel(opt.k_list);
+NK = S * K;
+fprintf('Total segments: %d; k points: %d\n', S, K);
+
+% 一维结果容器（parfor 中每次只写入一个位置）
+Pchan_pre_vec   = zeros(1, NK);
+Pchan_post_vec  = zeros(1, NK);
+Psup_vec        = zeros(1, NK);
+Pdiss_post_vec  = zeros(1, NK);
+Pjunc_vec       = zeros(1, NK);
+Fr_pre_vec      = zeros(1, NK);
+Fr_post_vec     = zeros(1, NK);
+
+% 进度提示
+dq = parallel.pool.DataQueue;
+t0 = tic;
+afterEach(dq, @(msg) fprintf('%s\n', msg));
+
+% 并行计算：每个 tid 对应 (段 s, k 索引 ik)
+parfor tid = 1:NK
+    s  = 1 + floor((tid - 1) / K);
+    ik = tid - (s - 1) * K;
+
+    % 为本任务设置独立随机种子（函数里调用 rng(seed)）
+    opt2 = opt;
+    opt2.k_list = opt.k_list(ik);
+    opt2.seed   = opt.seed + 1009*s + ik;
+
+    % 名称-值传参
+    args = namedargs2cell(opt2);
+    OUTs = Task5TwoHH_EnergyCoupled(C,E,g,Alpha,Beta,args{:});
+
+    Pchan_pre_vec(tid)   = OUTs.Pchan_pre_mean;
+    Pchan_post_vec(tid)  = OUTs.Pchan_post_mean;
+    Psup_vec(tid)        = OUTs.Psup_mean;
+    Pdiss_post_vec(tid)  = OUTs.Pdiss_post_mean;
+    Pjunc_vec(tid)       = OUTs.Pjunc_mean;
+    Fr_pre_vec(tid)      = OUTs.Fr_pre;
+    Fr_post_vec(tid)     = OUTs.Fr_post;
+
+    send(dq, sprintf('  Segment %d/%d | k = %5.2f  [done]  (%.1fs)  — %d/%d', ...
+        s, S, opt.k_list(ik), toc(t0), tid, NK));
+end
+fprintf('All tasks done in %.1fs\n', toc(t0));
+
+% 重排为 (S,K)，再跨段平均
+shape = [K, S];
+Pchan_pre_all   = reshape(Pchan_pre_vec,  shape).';
+Pchan_post_all  = reshape(Pchan_post_vec, shape).';
+Psup_all        = reshape(Psup_vec,       shape).';
+Pdiss_post_all  = reshape(Pdiss_post_vec, shape).';
+Pjunc_all       = reshape(Pjunc_vec,      shape).';
+Fr_pre_all      = reshape(Fr_pre_vec,     shape).';
+Fr_post_all     = reshape(Fr_post_vec,    shape).';
+
+OUT.k               = opt.k_list;
+OUT.Pchan_pre_mean  = mean(Pchan_pre_all,  1);
+OUT.Pchan_post_mean = mean(Pchan_post_all, 1);
+OUT.Psup_mean       = mean(Psup_all,       1);
+OUT.Pdiss_post_mean = mean(Pdiss_post_all, 1);
+OUT.Pjunc_mean      = mean(Pjunc_all,      1);
+OUT.Fr_pre          = mean(Fr_pre_all,     1);
+OUT.Fr_post         = mean(Fr_post_all,    1);
+
+% 图 5：通道代谢能耗
+figure('Name','图5 — 不同 k 下发送/接收神经元通道平均代谢能耗','Color','w');
+plot(OUT.k, OUT.Pchan_pre_mean, '-o','LineWidth',1.5); hold on;
+plot(OUT.k, OUT.Pchan_post_mean,'-s','LineWidth',1.5);
+xlabel('突触电导  k  (mS/cm^2)');
+ylabel('平均代谢能量消耗（通道总和，pJ/ms·cm^{-2}）');
+title('图5.（彩色在线）k 变化下发送/接收神经元离子通道的平均代谢能耗（单向耦合）');
+legend({'发送神经元（s）','接收神经元（r）'},'Location','northwest','Box','off'); grid on;
+
+% 插图：平均放电频率
+axes('Position',[0.50 0.30 0.32 0.32]);
+plot(OUT.k, OUT.Fr_pre, '-','LineWidth',1.2); hold on;
+plot(OUT.k, OUT.Fr_post,'--','LineWidth',1.2);
+xlabel('k'); ylabel('Hz'); title('平均放电频率'); legend({'s','r'},'Location','best','Box','off'); grid on;
+
+% 图 6：连接处能量供给与耗散
+figure('Name','图6 — 外介质供能与突触后部耗散（连接处口径）','Color','w');
+plot(OUT.k, OUT.Psup_mean,      '-^','LineWidth',1.5); hold on;   % 放大器供能 = V_pre * I_cpl
+plot(OUT.k, OUT.Pdiss_post_mean,'-s','LineWidth',1.5);            % 后部耗散 = -V_post * I_cpl
+xlabel('突触电导  k  (mS/cm^2)');
+ylabel('功率（nJ/s·cm^{-2} ≡ pJ/ms·cm^{-2}）');
+title('图6.（彩色在线）外介质供能与突触后部耗散（单向耦合）');
+legend({'从外介质供能（放大器项）','突触后部耗散'},'Location','northwest','Box','off'); grid on;
+
+% 插图：连接处净能量导数（恒非负）
+axes('Position',[0.50 0.30 0.32 0.32]);
+plot(OUT.k, OUT.Pjunc_mean,'-','LineWidth',1.2);
+xlabel('k'); ylabel('pJ/ms·cm^{-2}');
+title('连接处净能量导数  ⟨ k(V_s - V_r)^2 ⟩'); grid on;
+
+% 可选保存
+jsonStr = jsonencode(OUT, 'PrettyPrint', true);
+fid = fopen('ProDoubleOUT.txt','w','n','UTF-8'); fprintf(fid,'%s',jsonStr); fclose(fid);
