@@ -1,14 +1,14 @@
 # Fdb version 4
-["xdvipdfmx"] 1761795063.64747 "HodgkinHuxley.xdv" "HodgkinHuxley.pdf" "HodgkinHuxley" 1761795070.06873 0
-  "HodgkinHuxley.xdv" 1761795063 891844 8c0e08b4f54f322e52191b490b089dbe "xelatex"
+["xdvipdfmx"] 1762184043.57127 "HodgkinHuxley.xdv" "HodgkinHuxley.pdf" "HodgkinHuxley" 1762184049.04333 0
+  "HodgkinHuxley.xdv" 1762184043 891844 213104ca299262b6aeab57709de74494 "xelatex"
   (generated)
   "HodgkinHuxley.pdf"
   (rewritten before read)
-["xelatex"] 1761795052.41478 "d:/Repos/lab-matlab/2025秋matlab作业/课题/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex" "HodgkinHuxley.xdv" "HodgkinHuxley" 1761795070.06306 0
-  "HodgkinHuxley.aux" 1761795063 9716 bba4e254e6a734f8d3aec4a023c1180a "xelatex"
-  "HodgkinHuxley.out" 1761795063 2699 11a450803e761e0772fcc4da904eda1a "xelatex"
+["xelatex"] 1762184033.97733 "d:/Repos/Matlab课题开源代码/2025LZUMatlabCodeRef/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex" "HodgkinHuxley.xdv" "HodgkinHuxley" 1762184049.03167 0
+  "HodgkinHuxley.aux" 1762184043 9716 bba4e254e6a734f8d3aec4a023c1180a "xelatex"
+  "HodgkinHuxley.out" 1762184043 2699 11a450803e761e0772fcc4da904eda1a "xelatex"
   "HodgkinHuxley.tex" 1761795054 129014 30961187120c0a6b2eec9c7c5b140962 ""
-  "HodgkinHuxley.toc" 1761795063 2145 815590e197dd4d6d154542b5a1077e96 "xelatex"
+  "HodgkinHuxley.toc" 1762184043 2145 815590e197dd4d6d154542b5a1077e96 "xelatex"
   "HodgkinHuxley_media/figure_0.png" 1761792721 66329 0c065fa3cf1b489b0f838744c1f9f0fb ""
   "HodgkinHuxley_media/figure_1.png" 1761792721 67780 9fc152180166e4231f53314e85677e5a ""
   "HodgkinHuxley_media/figure_10.png" 1761792721 52795 6fdd6a2a45b77a79ac9b2664cfedf181 ""
@@ -36,7 +36,7 @@
   "HodgkinHuxley_media/image_2.png" 1761792721 55196 5dadb6a259b0ecc094c8210d1ef03b47 ""
   "HodgkinHuxley_media/image_3.png" 1761792722 45557 711a72218e31695c5914a58a98be073f ""
   "c:/Windows/Fonts/msyh.ttc" 1758796555 19704352 1e10e74402e59d54499af795caf0b135 ""
-  "d:/Repos/lab-matlab/2025秋matlab作业/课题/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex" 1761795054 129014 30961187120c0a6b2eec9c7c5b140962 ""
+  "d:/Repos/Matlab课题开源代码/2025LZUMatlabCodeRef/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex" 1761795054 129014 30961187120c0a6b2eec9c7c5b140962 ""
   "d:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1758941532 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1758942890 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1758941020 916 f87d7c45f9c908e672703b83b72241a3 ""

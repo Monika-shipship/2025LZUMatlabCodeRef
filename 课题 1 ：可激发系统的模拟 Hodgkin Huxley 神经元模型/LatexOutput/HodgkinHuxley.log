@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.27)  30 OCT 2025 11:30
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.27)  3 NOV 2025 23:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"d:/Repos/lab-matlab/2025秋matlab作业/课题/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex"
-(d:/Repos/lab-matlab/2025秋matlab作业/课题/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex
+**"d:/Repos/Matlab课题开源代码/2025LZUMatlabCodeRef/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex"
+(d:/Repos/Matlab课题开源代码/2025LZUMatlabCodeRef/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (d:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -1318,11 +1318,11 @@ Package rerunfilecheck Info: File `HodgkinHuxley.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  27868 strings out of 473831
- 609769 string characters out of 5733137
+ 609787 string characters out of 5733137
  1049575 words of memory out of 5000000
  50376 multiletter control sequences out of 15000+600000
  576340 words of font info for 88 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 119i,10n,123p,639b,1084s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 119i,10n,123p,645b,1084s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on HodgkinHuxley.xdv (73 pages, 891844 bytes).

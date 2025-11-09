@@ -1,8 +1,8 @@
-PWD d:/Repos/lab-matlab/2025秋matlab作业/课题/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput
+PWD d:/Repos/Matlab课题开源代码/2025LZUMatlabCodeRef/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput
 INPUT d:/texlive/2025/texmf.cnf
 INPUT d:/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
-INPUT d:/Repos/lab-matlab/2025秋matlab作业/课题/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex
+INPUT d:/Repos/Matlab课题开源代码/2025LZUMatlabCodeRef/课题 1 ：可激发系统的模拟 Hodgkin Huxley 神经元模型/LatexOutput/HodgkinHuxley.tex
 OUTPUT HodgkinHuxley.log
 INPUT d:/texlive/2025/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2025/texmf-dist/tex/latex/base/article.cls
